@@ -1,4 +1,4 @@
-
+import { Paper } from './components/Paper';
 function App() {
   return (
     <main style={{
@@ -8,9 +8,17 @@ function App() {
       width: '100vw',
       fontSize: 'calc(1vh + 1vw)'
     }}>
-      <h1 >
-        Welcome to React!
-      </h1>
+      <ul style={{ display: 'flex' }}>
+        <Paper color='yellow'>
+          <p>Hello</p>
+        </Paper>
+        <Paper>
+          <p>Hello</p>
+        </Paper>
+        <Paper color='green'>
+          <p>Hello</p>
+        </Paper>
+      </ul>
     </main>
 
   );
