@@ -1,4 +1,5 @@
-import React from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export const Paper = (props) => {
     const styles = {
@@ -18,3 +19,6 @@ export const Paper = (props) => {
         <li style={styles}>{props.children}</li>
     )
 }
+Paper.propTypes = {
+    children: PropTypes.node.isRequired,
+};
