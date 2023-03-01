@@ -1,16 +1,29 @@
-import { Panel } from './components/Panel'
+import { MyList } from './components/MyList'
+import { MyListWithoutChildren } from './components/MyListWithoutChildren'
+import { friendsData, moviesData, skillsData } from './data'
+
+const ViewMyData = ({ data }) => {
+	return data.map(item => <li key={item.id}>{item.name}</li>)
+}
 
 const App = () => {
-	const data2 = [
-		{ id: 0, name: 'Sashko', age: 12 },
-		{ id: 1, name: 'Sergii', age: 22 },
-		{ id: 2, name: 'Olena', age: 31 },
-		{ id: 3, name: 'Natali', age: 35 },
-	]
 	return (
 		<div className='App'>
-			<h1>Hello world</h1>
-			<Panel items={data2} />
+			<h1>components with children</h1>
+			<MyList title='My friends'>
+				<ViewMyData data={friendsData} />
+			</MyList>
+			<hr />
+			<MyList title='My skills'>
+				<ViewMyData data={skillsData} />
+			</MyList>
+			<hr />
+			<MyList title='My favourite films'>
+				<ViewMyData data={moviesData} />
+			</MyList>
+
+			<h1>Without children</h1>
+			<MyListWithoutChildren title='My favourite friends' data={friendsData} />
 		</div>
 	)
 }
