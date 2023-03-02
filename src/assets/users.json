@@ -1,6 +1,7 @@
 [
 	{
 		"id": 1,
+		"img": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
 		"name": "Leanne Graham",
 		"email": "Sincere@april.biz",
 		"bio": "Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur",
@@ -25,6 +26,7 @@
 	},
 	{
 		"id": 4,
+		"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlzGp1laQheiAAjrbJJ3pasHLjMBnIUEZg&usqp=CAU",
 		"name": "Patricia Lebsack",
 		"email": "Julianne.OConner@kory.org",
 		"bio": "Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur",
@@ -42,6 +44,8 @@
 	{
 		"id": 6,
 		"name": "Mrs. Dennis Schulist",
+		"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlzGp1laQheiAAjrbJJ3pasHLjMBnIUEZg&usqp=CAU",
+
 		"email": "Karley_Dach@jasper.info",
 		"bio": "Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur",
 		"skills": ["vue"],
@@ -59,6 +63,8 @@
 		"id": 8,
 		"name": "Nicholas Runolfsdottir V",
 		"email": "Sherwood@rosamond.me",
+		"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlzGp1laQheiAAjrbJJ3pasHLjMBnIUEZg&usqp=CAU",
+
 		"bio": "Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur",
 		"skills": ["react"],
 		"isOpenToWork": true
