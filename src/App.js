@@ -1,23 +1,27 @@
-import { MyList } from './components/MyList'
-import { MyListWithoutChildren } from './components/MyListWithoutChildren'
+import { MyList } from './components/MyList/MyList'
+import { MyListWithoutChildren } from './components/MyListWC/MyListWithoutChildren'
 import { friendsData, moviesData, skillsData } from './data'
+import styled from 'styled-components'
 
 const ViewMyData = ({ data }) => {
 	return data.map(item => <li key={item.id}>{item.name}</li>)
 }
 
 const App = () => {
+	const Title = styled.h1`
+		text-align: center;
+		font-size: 4rem;
+	`
+
 	return (
 		<div className='App'>
-			<h1>components with children</h1>
+			<Title>components with children</Title>
 			<MyList title='My friends'>
 				<ViewMyData data={friendsData} />
 			</MyList>
-			<hr />
 			<MyList title='My skills'>
 				<ViewMyData data={skillsData} />
 			</MyList>
-			<hr />
 			<MyList title='My favourite films'>
 				<ViewMyData data={moviesData} />
 			</MyList>

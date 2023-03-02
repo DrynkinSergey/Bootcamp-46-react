@@ -1,0 +1,9 @@
+.title {
+	color: blue;
+	p {
+		font-weight: 500;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}
