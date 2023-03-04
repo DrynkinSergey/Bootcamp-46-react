@@ -1,21 +1,43 @@
-import { Header } from './components/Header'
-import { Flex } from './StyledComponents/Flex'
-import { Container } from './StyledComponents/StyledComponents'
+import { AppWithStyled } from './components/AppWithStyled/AppWithStyled'
+import clsx from 'clsx'
 
-import { CardList } from './components/CardList/CardList'
 const App = () => {
 	return (
-		<>
-			<Header color='white' bgColor='green'>
-				Це буде наш додаток з картками
-			</Header>
-			<Container>
-				<Flex justify='space-between'>
-					<CardList />
-				</Flex>
-			</Container>
-		</>
+		<div>
+			<AppWithStyled />
+			<AppWithStyled />
+		</div>
 	)
 }
+// const Alert = ({ variant, outlined, elevated, children }) => {
+// 	return (
+// 		<p
+// 			className={clsx(
+// 				`alert`,
+// 				variant,
+// 				outlined && 'is-outlined',
+// 				elevated && 'is-elevated'
+// 			)}
+// 		>
+// 			{children}
+// 		</p>
+// 	)
+// }
+// const App = () => {
+// 	return (
+// 		<div>
+// 			<Alert variant='success' outlined elevated>
+// 				success
+// 			</Alert>
+// 			<Alert variant='info'>info</Alert>
+// 			<Alert variant='error' outlined>
+// 				error
+// 			</Alert>
+// 			<Alert variant='warning' elevated>
+// 				warning
+// 			</Alert>
+// 		</div>
+// 	)
+// }
 
 export default App

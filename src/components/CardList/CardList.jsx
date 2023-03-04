@@ -22,7 +22,7 @@ export const CardList = () => {
 	`
 
 	return usersJson.map(user => (
-		<Card isOpenToWork={user.isOpenToWork}>
+		<Card key={user.id} isOpenToWork={user.isOpenToWork}>
 			<Img
 				src={
 					user.img ||
@@ -37,7 +37,9 @@ export const CardList = () => {
 			<h4>
 				<span>Skills: </span>
 				{user.skills.map(skill => (
-					<span style={{ fontWeight: 'bold' }}>{skill} </span>
+					<span key={skill} style={{ fontWeight: 'bold' }}>
+						{skill}{' '}
+					</span>
 				))}
 			</h4>
 		</Card>

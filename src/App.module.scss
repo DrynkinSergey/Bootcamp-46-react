@@ -1,0 +1,10 @@
+@import './_variables';
+.card {
+	padding: 10px;
+	border: 2px solid;
+	margin: 10px 0;
+	font-size: $fSize;
+}
+.active {
+	background-color: $activeColor;
+}
