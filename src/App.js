@@ -1,13 +1,9 @@
-import { Component } from 'react';
-import { Layout } from './components/Layout';
+import { Component } from 'react'
+import { ColorPicker } from './components/ColorPicker'
+import colors from './assets/colors.json'
 
 export class App extends Component {
-
-  render() {
-    return (
-      <Layout>
-        <h1>Hello world!</h1>
-      </Layout>
-    );
-  }
+	render() {
+		return <ColorPicker colors={colors} />
+	}
 }
