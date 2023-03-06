@@ -7,7 +7,9 @@ export const BackgroundTheme = styled.div`
 	transition: background-color 0.5s linear;
 	background-color: ${props => props.bgColor};
 `
-export const ColorPalette = styled.div``
+export const ColorPalette = styled.div`
+	text-align: center;
+`
 export const Color = styled.li`
 	list-style: none;
 	border: 3px solid black;
@@ -15,6 +17,7 @@ export const Color = styled.li`
 	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.3s ease;
+	background-color: ${props => props.bgItemColor};
 	&:hover {
 		background-color: lightcyan;
 	}
