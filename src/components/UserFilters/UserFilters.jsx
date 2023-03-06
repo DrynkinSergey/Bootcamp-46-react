@@ -1,23 +1,22 @@
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi'
 
-import { AvailabilityFilters } from './AvailabilityFilters';
-import { SearchInput } from './SearchInput';
-import { SkilsFilters } from './SkilsFilters';
+import { AvailabilityFilters } from './AvailabilityFilters'
+import { SearchInput } from './SearchInput'
+import { SkilsFilters } from './SkilsFilters'
 
-export const UserFilters = ({ filters, onChangeSkils, onChangeSearch, onResetSearch, onChangeAvailability }) => {
-  return (
-    <>
-      <div className="d-flex align-items-center mb-5">
-        <AvailabilityFilters value={filters.isAvailable} onChangeAvailability={onChangeAvailability} />
+export const UserFilters = () => {
+	return (
+		<>
+			<div className='d-flex align-items-center mb-5'>
+				<AvailabilityFilters />
 
-        <SkilsFilters value={filters.skils} onChangeSkils={onChangeSkils} />
+				<SkilsFilters />
 
-        <button type="button" className="btn btn-primary btn-lg ms-auto">
-          <FiPlus />
-        </button>
-      </div>
-
-      <SearchInput value={filters.search} onResetSearch={onResetSearch} onChangeSearch={onChangeSearch} />
-    </>
-  );
-};
+				<button type='button' className='btn btn-primary btn-lg ms-auto'>
+					<FiPlus />
+				</button>
+			</div>
+			<SearchInput />
+		</>
+	)
+}

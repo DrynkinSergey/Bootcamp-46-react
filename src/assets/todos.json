@@ -1,0 +1,5 @@
+[
+	{ "id": 1, "title": "Вивчити Реакт", "completed": true },
+	{ "id": 2, "title": "Вивчити Редакс", "completed": false },
+	{ "id": 3, "title": "Вижити і знайти роботи", "completed": true }
+]
