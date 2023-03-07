@@ -6,8 +6,10 @@ import { SkilsFilters } from './SkilsFilters'
 
 export const UserFilters = ({
 	onChangeAvailable,
+	onChangeSkill,
 	onChangeInput,
 	onReset,
+	skillValue,
 	isAvailable,
 	searchStr,
 }) => {
@@ -19,7 +21,7 @@ export const UserFilters = ({
 					onChangeAvailable={onChangeAvailable}
 				/>
 
-				<SkilsFilters />
+				<SkilsFilters skillValue={skillValue} onChangeSkill={onChangeSkill} />
 
 				<button type='button' className='btn btn-primary btn-lg ms-auto'>
 					<FiPlus />

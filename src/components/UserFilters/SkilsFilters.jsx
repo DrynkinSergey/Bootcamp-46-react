@@ -1,10 +1,14 @@
 const skilsList = [
+	{ value: 'all', label: 'All' },
 	{ value: 'react', label: 'React' },
 	{ value: 'angular', label: 'Angular' },
 	{ value: 'vue', label: 'Vue' },
 ]
 
-export const SkilsFilters = () => {
+export const SkilsFilters = ({ onChangeSkill, skillValue }) => {
+	const handleChangeRadio = event => {
+		onChangeSkill(event)
+	}
 	return (
 		<fieldset className='ms-5'>
 			<legend>Skils:</legend>
@@ -17,8 +21,10 @@ export const SkilsFilters = () => {
 							<input
 								name='skil'
 								type='radio'
+								checked={skill.value === skillValue}
 								value={skill.value}
 								className='form-check-input'
+								onChange={handleChangeRadio}
 							/>
 						</label>
 					</div>

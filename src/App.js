@@ -15,7 +15,7 @@ export class App extends Component {
 		filters: {
 			isAvailable: false,
 			searchStr: '',
-			skill: '',
+			skill: 'all',
 		},
 	}
 
@@ -36,6 +36,14 @@ export class App extends Component {
 			},
 		}))
 	}
+	handleChangeSkill = event => {
+		this.setState(prevState => ({
+			filters: {
+				...prevState.filters,
+				skill: event.target.value,
+			},
+		}))
+	}
 
 	handleDeleteUser = id => {
 		this.setState(prevState => ({
@@ -52,11 +60,17 @@ export class App extends Component {
 	}
 
 	applyFilters = () => {
-		return this.state.users.filter(user =>
-			user.name
-				.toLowerCase()
-				.includes(this.state.filters.searchStr.toLowerCase())
-		)
+		if (this.state.filters.skill === 'all')
+			return this.state.users.filter(user =>
+				user.name
+					.toLowerCase()
+					.includes(this.state.filters.searchStr.toLowerCase())
+			)
+		else {
+			return this.state.users.filter(user =>
+				user.skills.includes(this.state.filters.skill)
+			)
+		}
 	}
 
 	render() {
@@ -68,8 +82,10 @@ export class App extends Component {
 					onReset={this.handleResetInput}
 					isAvailable={isAvailable}
 					searchStr={searchStr}
+					skillValue={skill}
 					onChangeInput={this.handleChengeInput}
 					onChangeAvailable={this.handleChengeAvailable}
+					onChangeSkill={this.handleChangeSkill}
 				/>
 				<UsersList
 					isAvailable={isAvailable}
