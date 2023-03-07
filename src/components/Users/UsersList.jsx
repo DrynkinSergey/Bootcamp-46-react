@@ -1,21 +1,23 @@
-import { Component } from 'react'
-
 // import NotFound from '../NotFound';
 
 import { UsersItem } from './UsersItem'
 
-export class UsersList extends Component {
-	state = {
-		users: this.props.users,
-	}
-	render() {
-		const { users } = this.state
-		return (
-			<div className='mb-5'>
-				{users.map(user => (
-					<UsersItem key={user.id} user={user} />
-				))}
-			</div>
-		)
-	}
+export const UsersList = ({ onDeleteUser, users, isAvailable }) => {
+	return (
+		<div className='mb-5'>
+			{isAvailable
+				? users
+						.filter(user => user.isOpenToWork)
+						.map(user => (
+							<UsersItem
+								onDeleteUser={onDeleteUser}
+								key={user.id}
+								user={user}
+							/>
+						))
+				: users.map(user => (
+						<UsersItem onDeleteUser={onDeleteUser} key={user.id} user={user} />
+				  ))}
+		</div>
+	)
 }

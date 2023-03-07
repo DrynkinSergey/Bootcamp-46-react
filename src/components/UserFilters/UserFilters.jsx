@@ -4,11 +4,20 @@ import { AvailabilityFilters } from './AvailabilityFilters'
 import { SearchInput } from './SearchInput'
 import { SkilsFilters } from './SkilsFilters'
 
-export const UserFilters = () => {
+export const UserFilters = ({
+	onChangeAvailable,
+	onChangeInput,
+	onReset,
+	isAvailable,
+	searchStr,
+}) => {
 	return (
 		<>
 			<div className='d-flex align-items-center mb-5'>
-				<AvailabilityFilters />
+				<AvailabilityFilters
+					isAvailable={isAvailable}
+					onChangeAvailable={onChangeAvailable}
+				/>
 
 				<SkilsFilters />
 
@@ -16,7 +25,11 @@ export const UserFilters = () => {
 					<FiPlus />
 				</button>
 			</div>
-			<SearchInput />
+			<SearchInput
+				onReset={onReset}
+				onChangeInput={onChangeInput}
+				searchStr={searchStr}
+			/>
 		</>
 	)
 }
