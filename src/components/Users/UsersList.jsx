@@ -1,8 +1,10 @@
 // import NotFound from '../NotFound';
 
+import { NotFound } from '../NotFound/NotFound'
 import { UsersItem } from './UsersItem'
 
 export const UsersList = ({ onDeleteUser, users, isAvailable }) => {
+	
 	return (
 		<div className='mb-5'>
 			{isAvailable

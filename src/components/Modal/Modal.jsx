@@ -1,26 +1,57 @@
-import { PropTypes } from 'prop-types';
+import { Component } from 'react'
+import  ReactDOM  from 'react-dom'
 
-export const Modal = ({ children, onModalClose }) => {
-  return (
-    <>
-      <div className="modal-backdrop fade show" />
+	
+const root = 	document.getElementById('modal')
+export class Modal extends Component {
 
-      <div className="modal fade show" style={{ display: 'block' }} >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
-              <button type="button" className="btn-close" aria-label="Close" />
-            </div>
+	closeModalBackdrop =(event)=>{
+		if(event.target === event.currentTarget){
+			this.props.onModalClose()
+		}
+	}
+	handlePressKey =(event)=>{
+			if(event.code ==='Escape'){
+				this.props.onModalClose()
+			}
+		}
 
-            <div className="modal-body">{children}</div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
 
-Modal.propType = {
-  children: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
+	componentDidMount(){
+		document.addEventListener('keydown', this.handlePressKey);
+	}
+
+
+	componentWillUnmount(){
+		document.removeEventListener('keydown', this.handlePressKey)
+	}
+
+  render(){
+  const { children, onModalClose,title } = this.props
+	return ReactDOM.createPortal( 
+		<>
+			<div className='modal-backdrop fade show' />
+
+			<div className='modal fade show' onClick={this.closeModalBackdrop} style={{ display: 'block' }}>
+				<div className='modal-dialog modal-dialog-centered'>
+					<div className='modal-content'>
+						<div className='modal-header'>
+							<h5 className='modal-title'>{title || 'Modal'}</h5>
+							<button
+								onClick={onModalClose}
+								type='button'
+								className='btn-close'
+								aria-label='Close'
+							/>
+						</div>
+						<div className='modal-body'>
+          
+            {children}</div>
+
+					</div>
+				</div>
+			</div>
+		</>, root
+	)
+  }
+}

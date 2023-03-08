@@ -9,6 +9,7 @@ export const UserFilters = ({
 	onChangeSkill,
 	onChangeInput,
 	onReset,
+	openModal,
 	skillValue,
 	isAvailable,
 	searchStr,
@@ -23,7 +24,11 @@ export const UserFilters = ({
 
 				<SkilsFilters skillValue={skillValue} onChangeSkill={onChangeSkill} />
 
-				<button type='button' className='btn btn-primary btn-lg ms-auto'>
+				<button
+					onClick={openModal}
+					type='button'
+					className='btn btn-primary btn-lg ms-auto'
+				>
 					<FiPlus />
 				</button>
 			</div>
