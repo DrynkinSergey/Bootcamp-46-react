@@ -2,10 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 
 export class HeaderImgFounder extends React.Component {
+	state = {
+		searchString: '',
+	}
+	handleChangeInput = e => {
+		this.setState({ searchString: e.currentTarget.value })
+	}
+
 	render() {
+		const { searchString } = this.state
 		return (
 			<Header>
-				<SearchInput type='text' />
+				<SearchInput
+					onChange={this.handleChangeInput}
+					value={searchString}
+					type='text'
+				/>
 				<ButtonSearch>Find</ButtonSearch>
 			</Header>
 		)
