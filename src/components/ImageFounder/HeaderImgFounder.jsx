@@ -1,18 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { toast } from 'react-toastify'
 export class HeaderImgFounder extends React.Component {
 	state = {
 		searchString: '',
 	}
+
 	handleChangeInput = e => {
 		this.setState({ searchString: e.currentTarget.value })
+	}
+
+	handleSubmit = e => {
+		e.preventDefault()
+
+		if (!this.state.searchString) {
+			toast('Заповніть, будь ласка, ваш інпут!')
+			return
+		}
+		this.props.onSubmit(this.state.searchString)
+		this.setState({ searchString: '' })
 	}
 
 	render() {
 		const { searchString } = this.state
 		return (
-			<Header>
+			<Header onSubmit={this.handleSubmit}>
 				<SearchInput
 					onChange={this.handleChangeInput}
 					value={searchString}
