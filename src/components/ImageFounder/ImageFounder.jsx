@@ -12,7 +12,7 @@ export class ImageFounder extends Component {
 	}
 	componentDidMount() {
 		this.setState({ loading: true })
-		setTimeout(() => {
+		setTimeout(
 			axios
 				.get(
 					'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
@@ -20,7 +20,7 @@ export class ImageFounder extends Component {
 				.then(res => this.setState({ images: res.data.hits }))
 				.catch(error => console.log(error))
 				.finally(this.setState({ loading: false }))
-		}, 2000)
+		)
 	}
 
 	render() {
