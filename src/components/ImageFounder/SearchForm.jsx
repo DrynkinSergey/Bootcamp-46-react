@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
-export class HeaderImgFounder extends React.Component {
+export class SearchForm extends React.Component {
 	state = {
 		searchString: '',
 	}

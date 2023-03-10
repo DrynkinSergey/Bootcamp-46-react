@@ -1,10 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Modal } from './../Modal'
 
-export const Image = ({ imageURL }) => {
+export const Image = ({ imageURL, onClickImage, idForModal, toggleModal }) => {
+	const handle = () => {
+		toggleModal()
+		onClickImage(idForModal)
+	}
+
 	return (
 		<ImageContainer>
-			<ImageItem src={imageURL} alt='img' />
+			<ImageItem onClick={handle} src={imageURL} alt='img' />
 		</ImageContainer>
 	)
 }

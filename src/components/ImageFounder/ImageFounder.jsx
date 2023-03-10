@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { ColorRing } from 'react-loader-spinner'
 import getImages from './../../api/imageIPI'
 import { Image } from './Image'
-import { HeaderImgFounder } from './HeaderImgFounder'
+import { SearchForm } from './SearchForm'
+import { Modal } from './../Modal'
+import { Pagination } from './Pagination'
 const statusList = {
 	loading: 'loading',
 	success: 'success',
@@ -18,6 +20,9 @@ export class ImageFounder extends Component {
 		searchQuery: 'cars',
 		// loading:true,
 		status: statusList.idle,
+		currentPage: 1,
+		isOpen: false,
+		largeImg: '',
 	}
 
 	// const status = [ 'loading', 'success', 'error', 'reject']
@@ -43,9 +48,13 @@ export class ImageFounder extends Component {
 
 	handleGetImages = () => {
 		this.setState({ status: statusList.loading })
-		getImages(this.state.searchQuery)
+		getImages(this.state.searchQuery, this.state.currentPage)
 			.then(res =>
-				this.setState({ images: res.data.hits, status: statusList.success })
+				this.setState({
+					images: res.data.hits,
+					totalImages: res.data.totalHits,
+					status: statusList.success,
+				})
 			)
 			.catch(error => this.setState({ error, status: statusList.error }))
 	}
@@ -57,14 +66,48 @@ export class ImageFounder extends Component {
 		if (prevState.searchQuery !== this.state.searchQuery) {
 			this.handleGetImages()
 		}
+
+		if (prevState.currentPage !== this.state.currentPage) {
+			getImages(this.state.searchQuery, this.state.currentPage)
+				.then(res =>
+					this.setState(prevState => ({
+						images: [...prevState.images, ...res.data.hits],
+						status: statusList.success,
+					}))
+				)
+				.catch(error => this.setState({ error, status: statusList.error }))
+		}
+	}
+
+	setCurrentPage = currentPage => {
+		this.setState({ currentPage })
+	}
+
+	loadMore = () => {
+		this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }))
+	}
+
+	setImg = largeImg => {
+		this.setState({ largeImg })
+	}
+	toggleModal = () => {
+		this.setState(prevState => ({ isOpen: !prevState.isOpen }))
 	}
 
 	render() {
-		const { images, status } = this.state
+		const { images, status, currentPage, totalImages } = this.state
+
+		// const lastIndexOfData = currentPage * 12
+		// const firstIndexOfData = lastIndexOfData - 12
+
+		// const paginationData = () => {
+		// 	return images.slice(firstIndexOfData, lastIndexOfData)
+		// }
+
 		if (status === statusList.loading) {
 			return (
 				<>
-					<HeaderImgFounder onSubmit={this.handleSubmit} />
+					<SearchForm onSubmit={this.handleSubmit} />
 					<Preloader>
 						<ColorRing
 							visible={true}
@@ -83,12 +126,33 @@ export class ImageFounder extends Component {
 		if (status === statusList.success || status === statusList.idle) {
 			return (
 				<>
-					<HeaderImgFounder onSubmit={this.handleSubmit} />
+					<SearchForm onSubmit={this.handleSubmit} />
+					{/* <Pagination
+						currentPage={currentPage}
+						onChangePage={this.setCurrentPage}
+						totalItems={Math.ceil(totalImages / 12)}
+					/> */}
+
 					<ImageContainer>
 						{images.map(image => (
-							<Image key={image.id} imageURL={image.largeImageURL} />
+							<Image
+								id={image.id}
+								idForModal={image.largeImageURL}
+								onClickImage={this.setImg}
+								key={image.id}
+								imageURL={image.webformatURL}
+								toggleModal={this.toggleModal}
+							/>
 						))}
+						<button onClick={this.loadMore}>Load More</button>
 					</ImageContainer>
+					{this.state.isOpen && (
+						<div>
+							<Modal onModalClose={this.toggleModal}>
+								<img src={this.state.largeImg} alt='' />
+							</Modal>
+						</div>
+					)}
 				</>
 			)
 		}
@@ -100,7 +164,7 @@ export class ImageFounder extends Component {
 
 // 	return (
 // 		<>
-// 			<HeaderImgFounder onSubmit={this.handleSubmit} />
+// 			<SearchForm onSubmit={this.handleSubmit} />
 
 // 			{loading && (
 // 				<Preloader>
