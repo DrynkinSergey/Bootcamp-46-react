@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 export const Flex = styled.div`
 	display: flex;
-	padding: 20% 5%;
+	padding: 5% 5%;
 
 	height: ${props => props.height || 'auto'};
 	${props =>

@@ -26,11 +26,11 @@ export class Modal extends Component {
 	render() {
 		const { children, onModalClose, title } = this.props
 		return ReactDOM.createPortal(
-			<>
-				<ModalConent className='Overlay' onClick={onModalClose}>
+			<BackDrop onClick={onModalClose}>
+				<ModalConent>
 					<div className='Modal'>{children}</div>
 				</ModalConent>
-			</>,
+			</BackDrop>,
 			root
 		)
 	}
@@ -41,4 +41,9 @@ const ModalConent = styled.div`
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+`
+const BackDrop = styled.div`
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.8);
 `

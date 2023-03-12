@@ -1,13 +1,15 @@
+import axios from 'axios'
 import React from 'react'
 
 import { Button, Todo, TodoTitle } from './TodoList.styled'
 export class TodoList extends React.Component {
 	state = {
-		todos: [
-			{ id: 1, title: 'Вивчити Реакт', completed: true },
-			{ id: 2, title: 'Вивчити Редакс', completed: false },
-			{ id: 3, title: 'Вижити і знайти роботи', completed: true },
-		],
+		todos: [],
+	}
+	componentDidMount() {
+		axios
+			.get('https://jsonplaceholder.typicode.com/todos')
+			.then(res => this.setState({ todos: res.data }))
 	}
 	handleInputChange = id => {
 		const newArr = this.state.todos.map(item =>
