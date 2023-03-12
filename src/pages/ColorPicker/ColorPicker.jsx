@@ -5,9 +5,37 @@ import {
 	Color,
 	ColorsList,
 } from './ColorPicker.styled'
+
+const colorsData = [
+	{
+		id: 1,
+		color: 'white',
+	},
+	{
+		id: 2,
+		color: 'lightblue',
+	},
+	{
+		id: 3,
+		color: 'orange',
+	},
+	{
+		id: 4,
+		color: 'tomato',
+	},
+	{
+		id: 5,
+		color: 'teal',
+	},
+	{
+		id: 6,
+		color: 'yellow',
+	},
+]
+
 export class ColorPicker extends React.Component {
 	state = {
-		colors: this.props.colors,
+		colors: colorsData,
 		bgIndexColor: 0,
 	}
 	changeColor = index => {

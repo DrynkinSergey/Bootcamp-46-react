@@ -4,7 +4,7 @@ import { ColorRing } from 'react-loader-spinner'
 import getImages from './../../api/imageIPI'
 import { Image } from './Image'
 import { SearchForm } from './SearchForm'
-import { Modal } from './../Modal'
+import { Modal } from './../../components/Modal'
 import { Pagination } from './Pagination'
 const statusList = {
 	loading: 'loading',

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal } from './../Modal'
+import { Modal } from './../../components/Modal'
 
 export const Image = ({ imageURL, onClickImage, idForModal, toggleModal }) => {
 	const handle = () => {
@@ -10,7 +10,7 @@ export const Image = ({ imageURL, onClickImage, idForModal, toggleModal }) => {
 
 	return (
 		<ImageContainer>
-			<ImageItem onClick={handle} src={imageURL} alt='img' />
+			<ImageItem lazy onClick={handle} src={imageURL} alt='img' />
 		</ImageContainer>
 	)
 }

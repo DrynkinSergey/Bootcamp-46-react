@@ -1,20 +1,23 @@
-import { Component } from 'react'
-import { TodoList } from './components/TodoList'
-// import { Counter } from './components/Counter'
-import { ColorPicker } from './components/ColorPicker'
-import { Flex } from './components/Flex.styled'
-// import { ImageFounder } from './components/ImageFounder'
-import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-export class App extends Component {
-	render() {
-		return (
-			<>
-				<Flex center>
-					<TodoList />
-				</Flex>
-				<ToastContainer success autoClose={3000} />
-			</>
-		)
-	}
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Counter } from './pages/Counter'
+import { LoginForm } from './pages/LoginForm'
+import { TodoList } from './pages/TodoList'
+import { ImageFounder } from './pages/ImageFounder'
+import { ColorPicker } from './pages/ColorPicker'
+import { NavBar } from './components/NavBar/NavBar'
+export const App = () => {
+	return (
+		<BrowserRouter>
+			<NavBar />
+			<Routes>
+				<Route index element={<ColorPicker />} />
+				<Route path='counter' element={<Counter />} />
+				<Route path='imageFounder' element={<ImageFounder />} />
+				<Route path='colorPicker' element={<ColorPicker />} />
+				<Route path='login' element={<LoginForm />} />
+				<Route path='todoList' element={<TodoList />} />
+			</Routes>
+		</BrowserRouter>
+	)
 }

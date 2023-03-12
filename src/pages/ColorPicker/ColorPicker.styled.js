@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const BackgroundTheme = styled.div`
 	display: grid;
 	place-content: center;
-	height: 100vh;
+	height: 95vh;
 	transition: background-color 0.5s linear;
 	background-color: ${props => props.bgColor};
 `
