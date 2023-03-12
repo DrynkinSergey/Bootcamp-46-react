@@ -6,6 +6,7 @@ import { TodoList } from './pages/TodoList'
 import { ImageFounder } from './pages/ImageFounder'
 import { ColorPicker } from './pages/ColorPicker'
 import { NavBar } from './components/NavBar/NavBar'
+import { Vote } from './pages/Vote'
 export const App = () => {
 	return (
 		<BrowserRouter>
@@ -17,6 +18,7 @@ export const App = () => {
 				<Route path='colorPicker' element={<ColorPicker />} />
 				<Route path='login' element={<LoginForm />} />
 				<Route path='todoList' element={<TodoList />} />
+				<Route path='vote' element={<Vote />} />
 			</Routes>
 		</BrowserRouter>
 	)

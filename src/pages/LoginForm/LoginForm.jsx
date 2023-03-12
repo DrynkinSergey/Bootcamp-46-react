@@ -5,8 +5,6 @@ export class LoginForm extends Component {
 		email: '',
 		password: '',
 		age: '',
-		gender: '',
-		likes: '',
 	}
 	validate = () => {
 		return this.state === '' || this.state.password === ''
@@ -25,12 +23,12 @@ export class LoginForm extends Component {
 		this.setState({
 			email: '',
 			password: '',
+			age: '',
 		})
 	}
 	handleSubmit = event => {
 		event.preventDefault()
 
-		console.log(this.state)
 		// event.currentTarget.reset()
 		this.reset()
 
@@ -61,42 +59,6 @@ export class LoginForm extends Component {
 						/>
 						<label htmlFor='email'>Email address</label>
 					</div>
-					<div className='form-floating'>
-						<input
-							id='email'
-							type='text'
-							name='age'
-							className='form-control'
-							placeholder='name@example.com'
-							onChange={this.handleChange}
-							value={this.state.age}
-						/>
-						<label htmlFor='email'> age</label>
-					</div>
-					<div className='form-floating'>
-						<input
-							id='email'
-							type='text'
-							name='gender'
-							className='form-control'
-							placeholder='name@example.com'
-							onChange={this.handleChange}
-							value={this.state.gender}
-						/>
-						<label htmlFor='email'>gender</label>
-					</div>
-					<div className='form-floating'>
-						<input
-							id='email'
-							type='text'
-							name='likes'
-							className='form-control'
-							placeholder='name@example.com'
-							onChange={this.handleChange}
-							value={this.state.likes}
-						/>
-						<label htmlFor='email'>likes</label>
-					</div>
 
 					<div className='form-floating mt-4'>
 						<input
@@ -110,7 +72,18 @@ export class LoginForm extends Component {
 						/>
 						<label htmlFor='pass'>Password</label>
 					</div>
-
+					<div className='form-floating mt-4'>
+						<input
+							id='age'
+							type='text'
+							name='age'
+							className='form-control'
+							placeholder='name@example.com'
+							onChange={this.handleChange}
+							value={this.state.age}
+						/>
+						<label htmlFor='age'> age</label>
+					</div>
 					<button
 						disabled={this.validate()}
 						type='submit'

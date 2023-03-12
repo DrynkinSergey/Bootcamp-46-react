@@ -10,7 +10,7 @@ export const Image = ({ imageURL, onClickImage, idForModal, toggleModal }) => {
 
 	return (
 		<ImageContainer>
-			<ImageItem lazy onClick={handle} src={imageURL} alt='img' />
+			<ImageItem loading='lazy' onClick={handle} src={imageURL} alt='img' />
 		</ImageContainer>
 	)
 }
