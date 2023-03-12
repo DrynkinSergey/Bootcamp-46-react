@@ -33,7 +33,7 @@ export class Counter extends Component {
 		const { defaultCount, title } = this.props
 		return (
 			<Flex center>
-				<div className='mb-5 p-5 text-white bg-dark rounded-3 w-75'>
+				<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
 					<h2 className='text-center'>{title}</h2>
 					<p className='text-center my-5' style={{ fontSize: 80 }}>
 						{count}

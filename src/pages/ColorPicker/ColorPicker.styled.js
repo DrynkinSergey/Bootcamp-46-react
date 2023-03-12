@@ -4,6 +4,7 @@ export const BackgroundTheme = styled.div`
 	display: grid;
 	place-content: center;
 	height: 95vh;
+	font-size: calc(1vw + 1vh);
 	transition: background-color 0.5s linear;
 	background-color: ${props => props.bgColor};
 `
@@ -24,5 +25,6 @@ export const Color = styled.li`
 `
 export const ColorsList = styled.ul`
 	display: flex;
+	flex-wrap: wrap;
 	gap: 10px;
 `

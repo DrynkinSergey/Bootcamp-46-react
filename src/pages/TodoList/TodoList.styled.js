@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Todo = styled.div`
-	width: 50vw;
 	display: flex;
+	gap: 10px;
 	justify-content: space-between;
 	margin-bottom: 20px;
 	padding: 10px 25px;
@@ -19,6 +19,8 @@ export const TodoTitle = styled.li`
 export const Button = styled.button`
 	background-color: none;
 	border-radius: 8px;
+	font-size: 0.7rem;
+
 	padding: 5px 15px;
 	outline: none;
 	margin-right: 5px;

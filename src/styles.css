@@ -5,6 +5,9 @@ a{
   color: inherit;
   text-decoration: none;
   font-size: calc((1vh + 1vw)*0.8);
+}
+body{
+  font-size: calc((1vh + 1vw)*0.8);
 
 }
 a:hover,

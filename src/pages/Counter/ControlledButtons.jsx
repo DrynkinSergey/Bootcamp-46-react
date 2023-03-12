@@ -9,7 +9,7 @@ export const ControlledButtons = ({
 		<div className='d-flex align-items-center justify-content-center w-100'>
 			<button
 				onClick={onMinusBtnClick}
-				className='btn p-3 btn-outline-light w-25 mx-2'
+				className='btn p-3 btn-outline-light w-100 mx-2'
 				type='button'
 			>
 				Minus
@@ -17,14 +17,14 @@ export const ControlledButtons = ({
 
 			<button
 				onClick={onReset}
-				className='btn p-3 btn-outline-light w-25 mx-2'
+				className='btn p-3 btn-outline-light w-100 mx-2'
 				type='button'
 			>
 				Reset
 			</button>
 			<button
 				onClick={onPlusBtnClick}
-				className='btn p-3 btn-outline-light w-25 mx-2'
+				className='btn p-3 btn-outline-light w-100 mx-2'
 				type='button'
 			>
 				Plus
