@@ -46,6 +46,7 @@ const Navbar = styled.nav`
 const GoTop = styled.nav`
 	position: fixed;
 	bottom: 3%;
+	background-color: white;
 	right: 3%;
 	border: 1px solid;
 	padding: 5px 10px;

@@ -11,6 +11,7 @@ export const App = () => {
 	return (
 		<BrowserRouter>
 			<NavBar />
+			<hr />
 			<Routes>
 				<Route index element={<ColorPicker />} />
 				<Route path='counter' element={<Counter />} />
