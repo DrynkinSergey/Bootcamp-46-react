@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { MyContext } from '../../App'
 
-export const ControlledButtons = ({ vote }) => {
-	const btns = [
-		{ title: 'LINUX', name: 'linux' },
-		{ title: 'WINDOWS', name: 'windows' },
-		{ title: 'MAC OS', name: 'macOS' },
-	]
+export const ControlledButtons = ({ vote, bgColor }) => {
+	const context = useContext(MyContext)
+
 	return (
 		<div className='d-flex align-items-center justify-content-center w-100'>
-			{btns.map(btn => (
+			{context.btnsVote.map(btn => (
 				<button
 					key={btn.name}
 					onClick={vote}
