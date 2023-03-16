@@ -1,6 +1,5 @@
-import { Component, useState } from 'react'
+import { useState } from 'react'
 import { ControlledButtons } from './ControlledButtons'
-import { Flex } from './../../components/Flex.styled'
 
 export const Counter = ({ defaultCount, title }) => {
 	const [count, setCount] = useState(0)
@@ -44,7 +43,7 @@ export const Counter = ({ defaultCount, title }) => {
 	}
 
 	return (
-		<Flex center>
+		<>
 			<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
 				<h2 className='text-center'>{title}</h2>
 				<p className='text-center my-5' style={{ fontSize: 80 }}>
@@ -58,7 +57,7 @@ export const Counter = ({ defaultCount, title }) => {
 					onMinusBtnClick={decrement}
 				/>
 			</div>
-		</Flex>
+		</>
 	)
 }
 
