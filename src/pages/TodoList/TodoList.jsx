@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 
 import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
@@ -12,9 +12,12 @@ import {
 	SET_COMPLETE,
 } from '../../store/const'
 import { initialState } from '../../store/state'
+import { MyContext, MyContextForTODO } from '../..'
 export const TodoList = () => {
 	// const [todos, setTodos] = useState([])
 	// const [page, setPage] = useState(1)
+	const { TodoData, colors } = useContext(MyContext)
+	// console.log(TodoData, colors)
 
 	const [state, dispatch] = useReducer(reducer, initialState)
 	const { todos, page } = state
@@ -45,6 +48,7 @@ export const TodoList = () => {
 	return (
 		<Flex center>
 			<div style={{ padding: '100px 0' }}>
+				<h1>Велью з контексту: {TodoData.name}</h1>
 				<h2>Усього маємо записів: {todos.length}</h2>
 				<h2>
 					Усього виконаних речей:
