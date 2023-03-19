@@ -3,12 +3,8 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { AiOutlineArrowUp } from 'react-icons/ai'
 const pages = [
-	{ title: 'Color Picker', url: '/colorPicker' },
 	{ title: 'Counter', url: '/counter' },
 	{ title: 'TodoList', url: '/todoList' },
-	{ title: 'Login', url: '/login' },
-	{ title: 'ImageFounder', url: '/imageFounder' },
-	{ title: 'Vote', url: '/vote' },
 ]
 
 export const NavBar = () => {

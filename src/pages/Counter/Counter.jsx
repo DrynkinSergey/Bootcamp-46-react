@@ -3,62 +3,38 @@ import { ControlledButtons } from './ControlledButtons'
 import { Flex } from './../../components/Flex.styled'
 
 export const Counter = ({ defaultCount, title }) => {
-	const [count, setCount] = useState(0)
-
-	function increment() {
-		setCount(prevState => prevState + 1)
-	}
-
-	const decrement = () => {
-		setCount(prevState => prevState - 1)
-	}
-	const reset = () => {
-		setCount(0)
-	}
-
-	const handleClick = e => {
-		const { name } = e.target
-		// if (name === 'plus') {
-		// 	setCount(prevState => prevState + 1)
-		// }
-		// if (name === 'minus') {
-		// 	setCount(prevState => prevState - 1)
-		// }
-		// if (name === 'reset') {
-		// 	setCount(0)
-		// }
-		console.log(name)
-		switch (name) {
-			case 'plus':
-				setCount(prevState => prevState + 1)
-				break
-			case 'minus':
-				setCount(prevState => prevState - 1)
-				break
-			case 'reset':
-				setCount(0)
-				break
-			default:
-				return
-		}
-	}
-
 	return (
-		<Flex center>
+		<>
 			<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
 				<h2 className='text-center'>{title}</h2>
 				<p className='text-center my-5' style={{ fontSize: 80 }}>
-					{count}
+					{0}
 				</p>
-
-				<ControlledButtons
-					handleClick={handleClick}
-					onReset={reset}
-					onPlusBtnClick={increment}
-					onMinusBtnClick={decrement}
-				/>
 			</div>
-		</Flex>
+			<div className='btns'>
+				<button
+					onClick={() => {}}
+					className='btn p-3 btn-outline-light w-100 mx-2'
+					type='button'
+				>
+					+
+				</button>
+				<button
+					onClick={() => {}}
+					className='btn p-3 btn-outline-light w-100 mx-2'
+					type='button'
+				>
+					-
+				</button>
+				<button
+					onClick={() => {}}
+					className='btn p-3 btn-outline-light w-100 mx-2'
+					type='button'
+				>
+					reset
+				</button>
+			</div>
+		</>
 	)
 }
 

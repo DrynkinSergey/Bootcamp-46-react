@@ -16,4 +16,11 @@ a:active{
   color: inherit;
 }
 
-
+.btns{
+  display: flex;
+}
+.btns button{
+    border: 1px solid black;
+    font-size: 1.2rem;
+    color: black;
+}
