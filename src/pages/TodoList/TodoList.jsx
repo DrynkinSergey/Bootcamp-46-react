@@ -1,23 +1,26 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
+import styled from 'styled-components'
 
 export const TodoList = () => {
-	const [todos, setTodos] = useState([])
+	const [todos, setTodos] = useState([
+		{ id: 1, title: 'Hello Redux', completed: false },
+	])
+
+	const handleSubmit = event => {
+		event.preventDefault()
+	}
 
 	return (
 		<Flex center>
 			<div style={{ padding: '100px 0' }}>
-				<h2>Усього маємо записів: {todos.length}</h2>
-				<h2>
-					Усього виконаних речей:{' '}
-					{todos.reduce(
-						(total, currentItem) => (currentItem.completed ? total + 1 : total),
-						0
-					)}
-				</h2>
+				<h2>ADD Todo:</h2>
+				<AddTodoForm onSubmit={handleSubmit}>
+					<input type='text' name='title' />
+					<button>Add</button>
+				</AddTodoForm>
 				<ul>
 					{todos.length ? (
 						todos.map(item => (
@@ -39,3 +42,7 @@ export const TodoList = () => {
 		</Flex>
 	)
 }
+
+const AddTodoForm = styled.form`
+	padding: 20px 0;
+`

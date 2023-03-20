@@ -18,9 +18,10 @@ a:active{
 
 .btns{
   display: flex;
+  justify-content: center;
+  gap:20px;
 }
 .btns button{
     border: 1px solid black;
     font-size: 1.2rem;
-    color: black;
 }

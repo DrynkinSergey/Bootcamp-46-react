@@ -1,88 +1,48 @@
-import { Component, useState } from 'react'
-import { ControlledButtons } from './ControlledButtons'
-import { Flex } from './../../components/Flex.styled'
+import styled from 'styled-components'
 
-export const Counter = ({ defaultCount, title }) => {
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, decrement, reset } from '../../redux'
+
+export const Counter = ({ title }) => {
+	const dispatch = useDispatch()
+	const { count, step } = useSelector(state => state)
+
+	const handleSubmit = event => {
+		event.preventDefault()
+	}
 	return (
 		<>
 			<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
-				<h2 className='text-center'>{title}</h2>
-				<p className='text-center my-5' style={{ fontSize: 80 }}>
-					{0}
-				</p>
+				<form onSubmit={handleSubmit}>
+					<h2>Current step: {step}</h2>
+					<input type='text' placeholder='You can change step...' />
+					<Button>Set</Button>
+				</form>
+				<Count>{count}</Count>
 			</div>
 			<div className='btns'>
-				<button
-					onClick={() => {}}
-					className='btn p-3 btn-outline-light w-100 mx-2'
-					type='button'
-				>
+				<Button onClick={() => dispatch(increment)} type='button'>
 					+
-				</button>
-				<button
-					onClick={() => {}}
-					className='btn p-3 btn-outline-light w-100 mx-2'
-					type='button'
-				>
+				</Button>
+				<Button onClick={() => dispatch(decrement)} type='button'>
 					-
-				</button>
-				<button
-					onClick={() => {}}
-					className='btn p-3 btn-outline-light w-100 mx-2'
-					type='button'
-				>
+				</Button>
+				<Button onClick={() => dispatch(reset)} type='button'>
 					reset
-				</button>
+				</Button>
 			</div>
 		</>
 	)
 }
 
-// export class Counter extends Component {
-// 	static defaultProps = {
-// 		defaultCount: 10,
-// 		title: 'Counter',
-// 	}
-
-// 	state = {
-// 		count: this.props.defaultCount,
-// 	}
-
-// 	increment = () => {
-// 		// this.setState({ count: this.state.count + 1 })
-// 		this.setState(prevState => ({
-// 			count: prevState.count + 1,
-// 		}))
-// 	}
-// 	decrement = () => {
-// 		// this.setState({ count: this.state.count - 1 })
-// 		this.setState(prevState => ({
-// 			count: prevState.count - 1,
-// 		}))
-// 	}
-
-// 	reset = () => {
-// 		this.setState({ count: 0 })
-// 	}
-
-// 	render() {
-// 		const { count } = this.state
-// 		const { defaultCount, title } = this.props
-// 		return (
-// 			<Flex center>
-// 				<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
-// 					<h2 className='text-center'>{title}</h2>
-// 					<p className='text-center my-5' style={{ fontSize: 80 }}>
-// 						{count}
-// 					</p>
-
-// 					<ControlledButtons
-// 						onReset={this.reset}
-// 						onPlusBtnClick={this.increment}
-// 						onMinusBtnClick={this.decrement}
-// 					/>
-// 				</div>
-// 			</Flex>
-// 		)
-// 	}
-// }
+const Button = styled.button`
+	padding: 8px 38px;
+	cursor: pointer;
+	color: white;
+	background-color: #232323;
+`
+const Count = styled.div`
+	font-size: 8rem;
+	text-align: center;
+	color: white;
+`

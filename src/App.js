@@ -16,3 +16,6 @@ export const App = () => {
 		</BrowserRouter>
 	)
 }
+
+// npm i redux
+// npm i react-redux
