@@ -1,37 +1,21 @@
 import { createStore } from 'redux'
-
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
-export const RESET = 'RESET'
+import { rootReducer } from './rootReducer'
 
 export const initialState = {
-	count: 0,
-	step: 1,
+	counter: {
+		count: 0,
+		step: 1,
+	},
+	todoList: {
+		tasks: [],
+		filter: 'all',
+	},
 }
 
-export const counterReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case INCREMENT: {
-			return { ...state, count: state.count + state.step }
-		}
-		case DECREMENT: {
-			return { ...state, count: state.count - state.step }
-		}
-		case RESET: {
-			return initialState
-		}
-		default:
-			return state
-	}
-}
+// const [state,dispatch] = useReducer(counterReducer, initialState)
 
 export const store = createStore(
-	counterReducer,
+	rootReducer,
 	initialState,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-
-//actions
-export const increment = { type: INCREMENT }
-export const decrement = { type: DECREMENT }
-export const reset = { type: RESET }

@@ -1,21 +1,30 @@
 import styled from 'styled-components'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement, reset } from '../../redux'
+import {
+	increment,
+	decrement,
+	reset,
+	changeStep,
+} from '../../redux/counter/counterActions'
 
 export const Counter = ({ title }) => {
 	const dispatch = useDispatch()
-	const { count, step } = useSelector(state => state)
+	const { count, step } = useSelector(state => state.counter)
 
 	const handleSubmit = event => {
 		event.preventDefault()
+		const form = event.target
+		const stepToChange = form.step.value
+		dispatch(changeStep(+stepToChange))
+		form.reset()
 	}
 	return (
 		<>
 			<div className='mb-5 p-5 text-white bg-dark rounded-3 w-100'>
 				<form onSubmit={handleSubmit}>
 					<h2>Current step: {step}</h2>
-					<input type='text' placeholder='You can change step...' />
+					<input type='text' name='step' placeholder='You can change step...' />
 					<Button>Set</Button>
 				</form>
 				<Count>{count}</Count>
