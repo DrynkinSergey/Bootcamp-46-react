@@ -1,19 +1,15 @@
 export const applyFilters = (state, filter) => {
 	switch (filter) {
 		case 'all': {
-			return state.todoList.tasks
+			return state.tasks
 		}
 		case 'active': {
-			return state.todoList.tasks.filter(task => !task.completed)
+			return state.tasks.filter(task => !task.completed)
 		}
 		case 'completed': {
-			return state.todoList.tasks.filter(task => task.completed)
+			return state.tasks.filter(task => task.completed)
 		}
 		default:
 			return state
 	}
-}
-
-export const sorted = state => {
-	return state.todoList.tasks
 }

@@ -11,7 +11,7 @@ import {
 import { applyFilters } from '../../redux/todoSelectors'
 
 export const TodoList = () => {
-	const filter = useSelector(state => state.todoList.filter)
+	const filter = useSelector(state => state.filter)
 	const filteredTasks = useSelector(state => applyFilters(state, filter))
 	const dispatch = useDispatch()
 

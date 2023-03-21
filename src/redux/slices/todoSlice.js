@@ -24,13 +24,7 @@ const todoSlice = createSlice({
 				}
 			},
 		},
-		// addTodo(state, action) {
-		// 	state.tasks.push({
-		// 		id: nanoid(),
-		// 		title: action.payload,
-		// 		completed: false,
-		// 	})
-		// },
+
 		removeTodo(state, action) {
 			const itemIndex = state.tasks.findIndex(
 				task => task.id === action.payload
