@@ -16,7 +16,7 @@ export const Counter = ({ title }) => {
 		event.preventDefault()
 		const form = event.target
 		const stepToChange = form.step.value
-		dispatch(changeStep(+stepToChange))
+		dispatch(changeStep(Number(stepToChange)))
 		form.reset()
 	}
 	return (

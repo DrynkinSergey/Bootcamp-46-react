@@ -1,7 +1,13 @@
 import { ADD_TODO, FILTER, REMOVE_TODO, TOOGLE } from './todoActions'
 
 let id = 0
-export const todoReducer = (state = [], action) => {
+export const todoReducer = (
+	state = {
+		tasks: [],
+		filter: 'all',
+	},
+	action
+) => {
 	switch (action.type) {
 		case ADD_TODO: {
 			++id
