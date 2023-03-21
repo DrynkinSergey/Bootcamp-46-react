@@ -6,7 +6,8 @@ import {
 	decrement,
 	reset,
 	changeStep,
-} from '../../redux/counter/counterReducer'
+} from '../../redux/slices/counterSlice'
+import { useEffect } from 'react'
 
 export const Counter = ({ title }) => {
 	const dispatch = useDispatch()

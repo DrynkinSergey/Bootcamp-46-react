@@ -7,8 +7,8 @@ import {
 	changeFilter,
 	removeTodo,
 	toggleTodo,
-} from '../../redux/todo/todoReducer'
-import { applyFilters } from '../../redux/todo/todoSelectors'
+} from '../../redux/slices/todoSlice'
+import { applyFilters } from '../../redux/todoSelectors'
 
 export const TodoList = () => {
 	const { filter } = useSelector(state => state.todoList)
