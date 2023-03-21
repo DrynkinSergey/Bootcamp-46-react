@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-
 import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
 import styled from 'styled-components'

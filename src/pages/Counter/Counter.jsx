@@ -6,7 +6,7 @@ import {
 	decrement,
 	reset,
 	changeStep,
-} from '../../redux/counter/counterActions'
+} from '../../redux/counter/counterReducer'
 
 export const Counter = ({ title }) => {
 	const dispatch = useDispatch()
@@ -30,13 +30,13 @@ export const Counter = ({ title }) => {
 				<Count>{count}</Count>
 			</div>
 			<div className='btns'>
-				<Button onClick={() => dispatch(increment)} type='button'>
+				<Button onClick={() => dispatch(increment())} type='button'>
 					+
 				</Button>
-				<Button onClick={() => dispatch(decrement)} type='button'>
+				<Button onClick={() => dispatch(decrement())} type='button'>
 					-
 				</Button>
-				<Button onClick={() => dispatch(reset)} type='button'>
+				<Button onClick={() => dispatch(reset())} type='button'>
 					reset
 				</Button>
 			</div>
