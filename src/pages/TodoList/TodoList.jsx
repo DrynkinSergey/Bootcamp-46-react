@@ -6,7 +6,7 @@ import {
 	addTodo,
 	changeFilter,
 	removeTodo,
-	setComplete,
+	toggleTodo,
 } from '../../redux/todo/todoActions'
 import { applyFilters } from '../../redux/todo/todoSelectors'
 
@@ -61,7 +61,7 @@ export const TodoList = () => {
 							<Todo key={item.id} isComplete={item.completed}>
 								<input
 									type='checkbox'
-									onChange={() => dispatch(setComplete(item.id))}
+									onChange={() => dispatch(toggleTodo(item.id))}
 									checked={item.completed}
 								/>
 								<TodoTitle>{item.title} </TodoTitle>

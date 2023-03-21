@@ -14,6 +14,6 @@ export const applyFilters = (state, filter) => {
 	}
 }
 
-export const allTakst = state => {
+export const sorted = state => {
 	return state.todoList.tasks
 }
