@@ -7,7 +7,7 @@ import {
 	changeFilter,
 	removeTodo,
 	toggleTodo,
-} from '../../redux/todo/todoActions'
+} from '../../redux/todo/todoReducer'
 import { applyFilters } from '../../redux/todo/todoSelectors'
 
 export const TodoList = () => {

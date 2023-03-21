@@ -16,13 +16,9 @@ export const counterSlice = createSlice({
 		changeStep(state, action) {
 			state.step = action.payload
 		},
-		changeSte2(state, action) {
-			state.step = action.payload
-		},
 	},
 })
 
-console.log(counterSlice)
 export const { increment, decrement, reset, changeStep } = counterSlice.actions
 
 export const counterReducer = counterSlice.reducer
