@@ -8,13 +8,29 @@ const todoSlice = createSlice({
 		filter: 'all',
 	},
 	reducers: {
-		addTodo(state, action) {
-			state.tasks.push({
-				id: nanoid(),
-				title: action.payload,
-				completed: false,
-			})
+		addTodo: {
+			reducer: (state, action) => {
+				state.tasks.push(action.payload)
+			},
+
+			prepare(title) {
+				return {
+					payload: {
+						id: nanoid(),
+						title,
+						completed: false,
+						createdAt: new Date().getFullYear(),
+					},
+				}
+			},
 		},
+		// addTodo(state, action) {
+		// 	state.tasks.push({
+		// 		id: nanoid(),
+		// 		title: action.payload,
+		// 		completed: false,
+		// 	})
+		// },
 		removeTodo(state, action) {
 			const itemIndex = state.tasks.findIndex(
 				task => task.id === action.payload
