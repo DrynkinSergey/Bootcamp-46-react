@@ -2,13 +2,15 @@ import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	addTodo,
-	changeFilter,
-	removeTodo,
-	toggleTodo,
-} from '../../redux/slices/todoSlice'
+import { changeFilter } from '../../redux/slices/todoSlice'
 import { applyFilters } from '../../redux/todoSelectors'
+import { useEffect } from 'react'
+import {
+	createTask,
+	fetchTasks,
+	removeTask,
+	toggleTask,
+} from '../../redux/slices/thunks'
 
 export const TodoList = () => {
 	const filter = useSelector(state => state.filter)
@@ -17,10 +19,12 @@ export const TodoList = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault()
-		dispatch(addTodo(event.target.title.value))
+		dispatch(createTask(event.target.title.value))
 		event.target.reset()
 	}
-
+	useEffect(() => {
+		dispatch(fetchTasks())
+	}, [dispatch])
 	return (
 		<Flex center>
 			<div style={{ padding: '100px 0' }}>
@@ -61,11 +65,11 @@ export const TodoList = () => {
 							<Todo key={item.id} isComplete={item.completed}>
 								<input
 									type='checkbox'
-									onChange={() => dispatch(toggleTodo(item.id))}
+									onChange={() => dispatch(toggleTask(item))}
 									checked={item.completed}
 								/>
 								<TodoTitle>{item.title} </TodoTitle>
-								<Button onClick={() => dispatch(removeTodo(item.id))}>
+								<Button onClick={() => dispatch(removeTask(item.id))}>
 									Delete
 								</Button>
 							</Todo>

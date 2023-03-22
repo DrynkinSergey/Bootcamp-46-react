@@ -14,9 +14,9 @@ export const App = () => {
 	// }, [])
 	return (
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<TodoList />
-			</PersistGate>
+			{/* <PersistGate loading={null} persistor={persistor}> */}
+			<TodoList />
+			{/* </PersistGate> */}
 		</Provider>
 	)
 }

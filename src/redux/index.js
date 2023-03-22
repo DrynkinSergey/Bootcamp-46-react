@@ -20,11 +20,11 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 // const [state,dispatch] = useReducer(counterReducer, initialState)
-const persistConfig = {
-	key: 'tasks',
-	storage,
-	blacklist: ['filter'],
-}
+// const persistConfig = {
+// 	key: 'tasks',
+// 	storage,
+// 	blacklist: ['filter'],
+// }
 // для декількох редьюсерів свторюємо рутРедьюсер і передаємо до persistedReducer
 
 // const rootReducer = combineReducers({
@@ -32,26 +32,11 @@ const persistConfig = {
 // 	todolist: todoReducer,
 // })
 
-// const myMiddleWare = action => next => dispatch => {
-// 	console.log('My middleware')
-// 	next(action)
-// }
-
-const middleware = [
-	...getDefaultMiddleware({
-		serializableCheck: {
-			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-		},
-	}),
-	logger,
-]
-
-const persistedReducer = persistReducer(persistConfig, todoReducer)
+// const persistedReducer = persistReducer(persistConfig, todoReducer)
 
 export const store = configureStore({
-	reducer: persistedReducer,
-	middleware,
+	reducer: todoReducer,
 	devTools: process.env.NODE_ENV !== 'production',
 })
 
-export const persistor = persistStore(store)
+// export const persistor = persistStore(store)
