@@ -1,4 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+//https://www.npmjs.com/package/redux-logger
+//https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
+import logger from 'redux-logger'
+import {
+	combineReducers,
+	configureStore,
+	getDefaultMiddleware,
+} from '@reduxjs/toolkit'
 import { todoReducer } from './slices/todoSlice'
 import {
 	persistStore,
@@ -25,16 +32,25 @@ const persistConfig = {
 // 	todolist: todoReducer,
 // })
 
+// const myMiddleWare = action => next => dispatch => {
+// 	console.log('My middleware')
+// 	next(action)
+// }
+
+const middleware = [
+	...getDefaultMiddleware({
+		serializableCheck: {
+			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+		},
+	}),
+	logger,
+]
+
 const persistedReducer = persistReducer(persistConfig, todoReducer)
 
 export const store = configureStore({
 	reducer: persistedReducer,
-	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-			},
-		}),
+	middleware,
 	devTools: process.env.NODE_ENV !== 'production',
 })
 
