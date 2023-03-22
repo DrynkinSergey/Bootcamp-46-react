@@ -1,15 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createTask, fetchTasks, removeTask, toggleTask } from './thunks'
 
-const pending = (state, action) => {
-	state.loading = true
-	state.error = null
-}
-const rejected = (state, action) => {
-	state.loading = false
-	state.error = action.payload
-}
-
 const todoSlice = createSlice({
 	name: '@@todoList',
 	initialState: {
@@ -23,44 +14,45 @@ const todoSlice = createSlice({
 			state.filter = action.payload
 		},
 	},
-	extraReducers: {
-		[fetchTasks.pending]: pending,
-		[createTask.pending]: pending,
-		[removeTask.pending]: pending,
-		[toggleTask.pending]: pending,
-
-		[fetchTasks.fulfilled]: (state, action) => {
-			state.loading = false
-			state.error = null
-			state.tasks = action.payload
-		},
-		[createTask.fulfilled]: (state, action) => {
-			state.loading = false
-			state.error = null
-
-			state.tasks.push(action.payload)
-		},
-		[removeTask.fulfilled]: (state, action) => {
-			state.loading = false
-			state.error = null
-
-			const itemIndex = state.tasks.findIndex(
-				task => task.id === action.payload.id
+	extraReducers: builder => {
+		builder
+			.addCase(fetchTasks.fulfilled, (state, action) => {
+				state.tasks = action.payload
+			})
+			.addCase(createTask.fulfilled, (state, action) => {
+				state.tasks.push(action.payload)
+			})
+			.addCase(removeTask.fulfilled, (state, action) => {
+				const itemIndex = state.tasks.findIndex(
+					task => task.id === action.payload.id
+				)
+				state.tasks.splice(itemIndex, 1)
+			})
+			.addCase(toggleTask.fulfilled, (state, action) => {
+				const item = state.tasks.find(task => task.id === action.payload.id)
+				item.completed = !item.completed
+			})
+			.addMatcher(
+				action => action.type.endsWith('/pending'),
+				(state, action) => {
+					state.loading = true
+					state.error = null
+				}
 			)
-			state.tasks.splice(itemIndex, 1)
-		},
-		[toggleTask.fulfilled]: (state, action) => {
-			state.loading = false
-			state.error = null
-
-			const item = state.tasks.find(task => task.id === action.payload.id)
-			item.completed = !item.completed
-		},
-
-		[fetchTasks.rejected]: rejected,
-		[createTask.rejected]: rejected,
-		[removeTask.rejected]: rejected,
-		[toggleTask.rejected]: rejected,
+			.addMatcher(
+				action => action.type.endsWith('/rejected'),
+				(state, action) => {
+					state.loading = false
+					state.error = action.payload
+				}
+			)
+			.addMatcher(
+				action => action.type.endsWith('/fulfilled'),
+				(state, action) => {
+					state.loading = false
+					state.error = null
+				}
+			)
 	},
 })
 
