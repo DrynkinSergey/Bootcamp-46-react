@@ -1,9 +1,41 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { todoReducer } from './slices/todoSlice'
+import {
+	persistStore,
+	persistReducer,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 // const [state,dispatch] = useReducer(counterReducer, initialState)
+const persistConfig = {
+	key: 'tasks',
+	storage,
+	blacklist: ['filter'],
+}
+// для декількох редьюсерів свторюємо рутРедьюсер і передаємо до persistedReducer
+
+// const rootReducer = combineReducers({
+// 	counter: counterReducer,
+// 	todolist: todoReducer,
+// })
+
+const persistedReducer = persistReducer(persistConfig, todoReducer)
 
 export const store = configureStore({
-	reducer: todoReducer,
+	reducer: persistedReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}),
 	devTools: process.env.NODE_ENV !== 'production',
 })
+
+export const persistor = persistStore(store)
