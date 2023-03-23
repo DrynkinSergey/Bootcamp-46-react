@@ -78,10 +78,7 @@ export const TodoList = () => {
 									checked={item.completed}
 								/>
 								<TodoTitle>{item.name} </TodoTitle>
-								<Button
-									disabled={loading}
-									onClick={() => dispatch(removeTask(item.id))}
-								>
+								<Button onClick={() => dispatch(removeTask(item.id))}>
 									Delete
 								</Button>
 							</Todo>
