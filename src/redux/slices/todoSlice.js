@@ -17,6 +17,12 @@ const todoSlice = createSlice({
 		test(state, action) {
 			state.test = !state.test
 		},
+		toggleTheme(state, action) {
+			state.theme =
+				state.theme === 'light'
+					? (state.theme = 'dark')
+					: (state.theme = 'light')
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -61,4 +67,4 @@ const todoSlice = createSlice({
 })
 
 export const todoReducer = todoSlice.reducer
-export const { changeFilter, test } = todoSlice.actions
+export const { changeFilter, test, toggleTheme } = todoSlice.actions

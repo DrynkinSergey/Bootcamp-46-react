@@ -2,7 +2,7 @@ import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeFilter, test } from '../../redux/slices/todoSlice'
+import { changeFilter, test, toggleTheme } from '../../redux/slices/todoSlice'
 import {
 	applyFiltersReselect,
 	applyFiltersWithoutReselect,
@@ -21,6 +21,7 @@ import {
 export const TodoList = () => {
 	const filter = useSelector(selectFilterValue)
 	const loading = useSelector(selectLoadingValue)
+	const theme = useSelector(state => state.theme)
 	const filteredTasks = useSelector(applyFiltersWithoutReselect)
 	const testValue = useSelector(selectTestValue)
 	const dispatch = useDispatch()
@@ -34,8 +35,8 @@ export const TodoList = () => {
 		dispatch(fetchTasks())
 	}, [dispatch])
 	return (
-		<Flex center className='wrapper'>
-			<button onClick={() => dispatch(test())}>TEST</button>
+		<Flex center className={`wrapper ${theme}`}>
+			<button onClick={() => dispatch(toggleTheme())}>Toggle theme</button>
 			<div style={{ padding: '100px 0' }}>
 				<h2>ADD Todo:</h2>
 				<h1>{testValue}</h1>

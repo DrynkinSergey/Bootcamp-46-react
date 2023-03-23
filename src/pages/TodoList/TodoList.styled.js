@@ -10,8 +10,9 @@ export const Todo = styled.div`
 	border-radius: 8px;
 	align-items: center;
 	font-size: 1.2rem;
+	color: inherit;
 	box-shadow: 5px 5px 3px 0 lightsteelblue;
-	background-color: ${props => (props.isComplete ? 'lightcyan' : 'white')};
+	background-color: ${props => (props.isComplete ? 'lightcyan' : 'inherit')};
 `
 export const TodoTitle = styled.li`
 	list-style: none;
