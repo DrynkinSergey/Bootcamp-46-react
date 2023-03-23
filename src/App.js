@@ -16,6 +16,7 @@ export const App = () => {
 	return (
 		<Provider store={store}>
 			{/* <PersistGate loading={null} persistor={persistor}> */}
+
 			<TodoList />
 			{/* <Form /> */}
 			{/* </PersistGate> */}
