@@ -1,23 +1,23 @@
 //https://www.npmjs.com/package/redux-logger
 //https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 import {
-	combineReducers,
+	// combineReducers,
 	configureStore,
-	getDefaultMiddleware,
+	// getDefaultMiddleware,
 } from '@reduxjs/toolkit'
 import { todoReducer } from './slices/todoSlice'
-import {
-	persistStore,
-	persistReducer,
-	FLUSH,
-	REHYDRATE,
-	PAUSE,
-	PERSIST,
-	PURGE,
-	REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+// import {
+// 	persistStore,
+// 	persistReducer,
+// 	FLUSH,
+// 	REHYDRATE,
+// 	PAUSE,
+// 	PERSIST,
+// 	PURGE,
+// 	REGISTER,
+// } from 'redux-persist'
+// import storage from 'redux-persist/lib/storage'
 
 // const [state,dispatch] = useReducer(counterReducer, initialState)
 // const persistConfig = {

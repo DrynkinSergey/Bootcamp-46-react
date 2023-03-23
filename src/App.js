@@ -5,6 +5,7 @@ import { persistor, store } from './redux'
 import { Provider } from 'react-redux'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { Form } from './pages/Form'
 
 export const App = () => {
 	// useEffect(() => {
@@ -16,6 +17,7 @@ export const App = () => {
 		<Provider store={store}>
 			{/* <PersistGate loading={null} persistor={persistor}> */}
 			<TodoList />
+			{/* <Form /> */}
 			{/* </PersistGate> */}
 		</Provider>
 	)

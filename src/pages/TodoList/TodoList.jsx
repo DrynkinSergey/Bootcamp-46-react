@@ -3,8 +3,12 @@ import { Flex } from './../../components/Flex.styled'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeFilter } from '../../redux/slices/todoSlice'
-import { applyFilters } from '../../redux/todoSelectors'
-import { useEffect } from 'react'
+import {
+	applyFilters,
+	selectFilterValue,
+	selectLoadingValue,
+} from '../../redux/todoSelectors'
+import { useEffect, useState } from 'react'
 import {
 	createTask,
 	fetchTasks,
@@ -13,8 +17,11 @@ import {
 } from '../../redux/slices/thunks'
 
 export const TodoList = () => {
-	const filter = useSelector(state => state.filter)
-	const filteredTasks = useSelector(state => applyFilters(state, filter))
+	const [isModal, setIsModal] = useState(false)
+
+	const filter = useSelector(selectFilterValue)
+	const loading = useSelector(selectLoadingValue)
+	const filteredTasks = useSelector(applyFilters)
 	const dispatch = useDispatch()
 
 	const handleSubmit = event => {
@@ -27,6 +34,7 @@ export const TodoList = () => {
 	}, [dispatch])
 	return (
 		<Flex center>
+			<button onClick={() => setIsModal(!isModal)}></button>
 			<div style={{ padding: '100px 0' }}>
 				<h2>ADD Todo:</h2>
 				<AddTodoForm onSubmit={handleSubmit}>
@@ -59,6 +67,7 @@ export const TodoList = () => {
 						Completed
 					</button>
 				</div>
+				{/* {loading && <h1>Loading...</h1>} */}
 				<ul>
 					{filteredTasks.length ? (
 						filteredTasks.map(item => (
