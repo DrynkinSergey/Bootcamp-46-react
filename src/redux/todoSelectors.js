@@ -26,9 +26,8 @@ export const applyFiltersWithoutReselect = state => {
 export const applyFiltersReselect = createSelector(
 	[selectAllTodos, selectFilterValue],
 	// [ state => state.tasks, state => state.filter],
-	(todos, filter) => {
-		console.log('rerender')
-		switch (filter) {
+	(todos, filterstr) => {
+		switch (filterstr) {
 			case 'all': {
 				return todos
 			}
@@ -39,7 +38,7 @@ export const applyFiltersReselect = createSelector(
 				return todos.filter(task => task.completed)
 			}
 			default:
-				return todos
+				console.log('error')
 		}
 	}
 )

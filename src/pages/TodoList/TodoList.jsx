@@ -10,7 +10,7 @@ import {
 	selectLoadingValue,
 	selectTestValue,
 } from '../../redux/todoSelectors'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {
 	createTask,
 	fetchTasks,
@@ -22,8 +22,7 @@ export const TodoList = () => {
 	const filter = useSelector(selectFilterValue)
 	const loading = useSelector(selectLoadingValue)
 	const theme = useSelector(state => state.theme)
-	const filteredTasks = useSelector(applyFiltersWithoutReselect)
-	const testValue = useSelector(selectTestValue)
+	const filteredTasks = useSelector(applyFiltersReselect)
 	const dispatch = useDispatch()
 	console.log(filteredTasks)
 	const handleSubmit = event => {
@@ -39,7 +38,6 @@ export const TodoList = () => {
 			<button onClick={() => dispatch(toggleTheme())}>Toggle theme</button>
 			<div style={{ padding: '100px 0' }}>
 				<h2>ADD Todo:</h2>
-				<h1>{testValue}</h1>
 				<AddTodoForm onSubmit={handleSubmit}>
 					<input type='text' name='title' />
 					<button>Add</button>
@@ -70,33 +68,28 @@ export const TodoList = () => {
 						Completed
 					</button>
 				</div>
-				{/* {loading && <h1>Loading...</h1>} */}
-				{loading ? (
-					<h1>loading</h1>
-				) : (
-					<ul>
-						{filteredTasks.length ? (
-							filteredTasks.map(item => (
-								<Todo key={item.id} isComplete={item.completed}>
-									<input
-										type='checkbox'
-										onChange={() => dispatch(toggleTask(item))}
-										checked={item.completed}
-									/>
-									<TodoTitle>{item.title} </TodoTitle>
-									<Button
-										disabled={loading}
-										onClick={() => dispatch(removeTask(item.id))}
-									>
-										Delete
-									</Button>
-								</Todo>
-							))
-						) : (
-							<h1>Даних немає</h1>
-						)}
-					</ul>
-				)}
+				<ul>
+					{filteredTasks.length ? (
+						filteredTasks.map(item => (
+							<Todo key={item.id} isComplete={item.completed}>
+								<input
+									type='checkbox'
+									onChange={() => dispatch(toggleTask(item))}
+									checked={item.completed}
+								/>
+								<TodoTitle>{item.name} </TodoTitle>
+								<Button
+									disabled={loading}
+									onClick={() => dispatch(removeTask(item.id))}
+								>
+									Delete
+								</Button>
+							</Todo>
+						))
+					) : (
+						<h1>Даних немає</h1>
+					)}
+				</ul>
 			</div>
 		</Flex>
 	)
