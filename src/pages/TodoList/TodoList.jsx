@@ -2,11 +2,13 @@ import { Button, Todo, TodoTitle } from './TodoList.styled'
 import { Flex } from './../../components/Flex.styled'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeFilter } from '../../redux/slices/todoSlice'
+import { changeFilter, test } from '../../redux/slices/todoSlice'
 import {
-	applyFilters,
+	applyFiltersReselect,
+	applyFiltersWithoutReselect,
 	selectFilterValue,
 	selectLoadingValue,
+	selectTestValue,
 } from '../../redux/todoSelectors'
 import { useEffect, useState } from 'react'
 import {
@@ -17,13 +19,12 @@ import {
 } from '../../redux/slices/thunks'
 
 export const TodoList = () => {
-	const [isModal, setIsModal] = useState(false)
-
 	const filter = useSelector(selectFilterValue)
 	const loading = useSelector(selectLoadingValue)
-	const filteredTasks = useSelector(applyFilters)
+	const filteredTasks = useSelector(applyFiltersWithoutReselect)
+	const testValue = useSelector(selectTestValue)
 	const dispatch = useDispatch()
-
+	console.log(filteredTasks)
 	const handleSubmit = event => {
 		event.preventDefault()
 		dispatch(createTask(event.target.title.value))
@@ -33,10 +34,11 @@ export const TodoList = () => {
 		dispatch(fetchTasks())
 	}, [dispatch])
 	return (
-		<Flex center>
-			<button onClick={() => setIsModal(!isModal)}></button>
+		<Flex center className='wrapper'>
+			<button onClick={() => dispatch(test())}>TEST</button>
 			<div style={{ padding: '100px 0' }}>
 				<h2>ADD Todo:</h2>
+				<h1>{testValue}</h1>
 				<AddTodoForm onSubmit={handleSubmit}>
 					<input type='text' name='title' />
 					<button>Add</button>
@@ -68,25 +70,32 @@ export const TodoList = () => {
 					</button>
 				</div>
 				{/* {loading && <h1>Loading...</h1>} */}
-				<ul>
-					{filteredTasks.length ? (
-						filteredTasks.map(item => (
-							<Todo key={item.id} isComplete={item.completed}>
-								<input
-									type='checkbox'
-									onChange={() => dispatch(toggleTask(item))}
-									checked={item.completed}
-								/>
-								<TodoTitle>{item.title} </TodoTitle>
-								<Button onClick={() => dispatch(removeTask(item.id))}>
-									Delete
-								</Button>
-							</Todo>
-						))
-					) : (
-						<h1>Даних немає</h1>
-					)}
-				</ul>
+				{loading ? (
+					<h1>loading</h1>
+				) : (
+					<ul>
+						{filteredTasks.length ? (
+							filteredTasks.map(item => (
+								<Todo key={item.id} isComplete={item.completed}>
+									<input
+										type='checkbox'
+										onChange={() => dispatch(toggleTask(item))}
+										checked={item.completed}
+									/>
+									<TodoTitle>{item.title} </TodoTitle>
+									<Button
+										disabled={loading}
+										onClick={() => dispatch(removeTask(item.id))}
+									>
+										Delete
+									</Button>
+								</Todo>
+							))
+						) : (
+							<h1>Даних немає</h1>
+						)}
+					</ul>
+				)}
 			</div>
 		</Flex>
 	)

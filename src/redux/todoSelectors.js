@@ -1,12 +1,13 @@
+import { createSelector } from '@reduxjs/toolkit'
+
 export const selectAllTodos = state => state.tasks
 export const selectFilterValue = state => state.filter
 export const selectLoadingValue = state => state.loading
 
-export const applyFilters = state => {
+export const applyFiltersWithoutReselect = state => {
 	const filter = selectFilterValue(state)
 	const tasks = selectAllTodos(state)
 	console.log('rerender')
-
 	switch (filter) {
 		case 'all': {
 			return tasks
@@ -21,3 +22,28 @@ export const applyFilters = state => {
 			return state
 	}
 }
+
+export const applyFiltersReselect = createSelector(
+	[selectAllTodos, selectFilterValue],
+	// [ state => state.tasks, state => state.filter],
+	(todos, filter) => {
+		console.log('rerender')
+		switch (filter) {
+			case 'all': {
+				return todos
+			}
+			case 'active': {
+				return todos.filter(task => !task.completed)
+			}
+			case 'completed': {
+				return todos.filter(task => task.completed)
+			}
+			default:
+				return todos
+		}
+	}
+)
+export const selectTestValue = createSelector([state => state.test], test => {
+	console.log('Hello from reselect')
+	return 2 + 2
+})

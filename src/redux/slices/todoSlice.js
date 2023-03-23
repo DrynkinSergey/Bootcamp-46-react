@@ -2,16 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createTask, fetchTasks, removeTask, toggleTask } from './thunks'
 
 const todoSlice = createSlice({
-	name: '@@todoList',
+	name: 'todoList',
 	initialState: {
 		tasks: [],
 		filter: 'all',
 		error: null,
 		loading: false,
+		theme: 'light',
 	},
 	reducers: {
 		changeFilter(state, action) {
 			state.filter = action.payload
+		},
+		test(state, action) {
+			state.test = !state.test
 		},
 	},
 	extraReducers: builder => {
@@ -57,4 +61,4 @@ const todoSlice = createSlice({
 })
 
 export const todoReducer = todoSlice.reducer
-export const { changeFilter } = todoSlice.actions
+export const { changeFilter, test } = todoSlice.actions

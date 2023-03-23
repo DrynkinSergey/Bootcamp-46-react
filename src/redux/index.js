@@ -2,6 +2,7 @@
 //https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
 // import logger from 'redux-logger'
 import {
+	combineReducers,
 	// combineReducers,
 	configureStore,
 	// getDefaultMiddleware,
