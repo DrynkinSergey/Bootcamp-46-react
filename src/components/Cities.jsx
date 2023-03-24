@@ -1,14 +1,13 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { fetchCity } from '../redux/operations'
+import { fetchCity, fetchRemoveCity } from '../redux/operations'
 import { getAllCities } from '../redux/selectors'
+import { addCity } from '../redux/slice'
 import { AddForm } from './AddForm'
 import { Card } from './Card'
 import { SearchForm } from './SearchForm'
 export const Cities = () => {
-	const [state, setState] = useState([])
 	const [query, setQuery] = useState('')
 	const cities = useSelector(getAllCities)
 	const dispatch = useDispatch()
@@ -16,11 +15,12 @@ export const Cities = () => {
 		dispatch(fetchCity())
 	}, [dispatch])
 	const handleDeleteCard = id => {
-		setState(state.filter(city => city.id !== id))
+		dispatch(fetchRemoveCity(id))
 	}
 
-	const addCity = newCity => {
-		setState([newCity, ...state])
+	const handleAddCity = newCity => {
+		// setState([newCity, ...state])
+		dispatch(addCity(newCity))
 	}
 	const filterCity = query => {
 		setQuery(query)
@@ -33,7 +33,7 @@ export const Cities = () => {
 		<Main>
 			<Title>Cities</Title>
 			<Flex>
-				<AddForm addCity={addCity} />
+				<AddForm addCity={handleAddCity} />
 				<SearchForm filterCity={filterCity} />
 			</Flex>
 			<Wrapper>

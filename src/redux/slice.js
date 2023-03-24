@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchCity } from './operations'
+import { fetchCity, fetchRemoveCity } from './operations'
 
 const initialState = {
 	items: [],
@@ -10,14 +10,19 @@ const citySlice = createSlice({
 	name: 'cityList',
 	initialState,
 	reducers: {
-		addCity: (state, action) => {
-			state.items.push(action.payload)
+		addCity: (state, { payload }) => {
+			state.items.unshift(payload)
 		},
 	},
+
 	extraReducers: builder => {
 		builder
 			.addCase(fetchCity.fulfilled, (state, action) => {
 				state.items = action.payload
+			})
+			.addCase(fetchRemoveCity.fulfilled, (state, action) => {
+				const itemIndex = state.items.find(item => item.id === action.payload)
+				state.items.splice(itemIndex, 1)
 			})
 
 			.addMatcher(
