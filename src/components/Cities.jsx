@@ -1,17 +1,20 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { fetchCity } from '../redux/operations'
+import { getAllCities } from '../redux/selectors'
 import { AddForm } from './AddForm'
 import { Card } from './Card'
 import { SearchForm } from './SearchForm'
 export const Cities = () => {
 	const [state, setState] = useState([])
 	const [query, setQuery] = useState('')
+	const cities = useSelector(getAllCities)
+	const dispatch = useDispatch()
 	useEffect(() => {
-		axios
-			.get('https://641ccf251a68dc9e4611ae9f.mockapi.io/Movies')
-			.then(res => setState(res.data))
-	}, [])
+		dispatch(fetchCity())
+	}, [dispatch])
 	const handleDeleteCard = id => {
 		setState(state.filter(city => city.id !== id))
 	}
@@ -22,7 +25,7 @@ export const Cities = () => {
 	const filterCity = query => {
 		setQuery(query)
 	}
-	const filtered = state.filter(item =>
+	const filtered = cities.filter(item =>
 		item.city.toLowerCase().includes(query.toLowerCase())
 	)
 
