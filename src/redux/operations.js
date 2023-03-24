@@ -26,7 +26,7 @@ export const fetchRemoveCity = createAsyncThunk(
 	},
 	{
 		condition: (_, { getState }) => {
-			const { loading } = getState().loading
+			const loading = getState().loading
 			if (loading) {
 				return false
 			}
