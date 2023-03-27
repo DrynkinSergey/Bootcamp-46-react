@@ -1,26 +1,23 @@
 import React, { useContext } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Context } from '../hoc/AuthProvider'
-
+import { useDispatch } from 'react-redux'
 export const LoginPage = () => {
-	const location = useLocation()
-	console.log(location)
-	const fromPage = location.state?.from?.pathname ?? '/'
-	const navigate = useNavigate()
-	const { login } = useContext(Context)
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
-		const userName = form.userName.value
-		if (userName !== '') {
-			login(userName, () => navigate(fromPage))
-		}
+		const email = form.email.value
+		const password = form.password.value
 	}
 	return (
 		<div>
 			<h1>login</h1>
 			<form className='flex gap-2 flex-col w-1/4 p-4' onSubmit={handleSubmit}>
-				<input className='border' name='userName' type='text' />
+				<input className='border' name='email' placeholder='name' type='text' />
+				<input
+					className='border'
+					name='password'
+					placeholder='password'
+					type='password'
+				/>
 				<button className='border'>Login</button>
 			</form>
 		</div>

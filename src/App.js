@@ -9,9 +9,9 @@ import { CreatePost } from './pages/CreatePost'
 import { EditPost } from './pages/EditPost'
 import { LoginPage } from './pages/LoginPage'
 import { PrivateRoute } from './hoc/PrivateRoute'
+import { RegistrationPage } from './pages/RegistrationPage'
 
 const Posts = lazy(() => import('./pages/Posts'))
-const About = lazy(() => import('./pages/About'))
 
 export const App = () => {
 	return (
@@ -30,15 +30,9 @@ export const App = () => {
 							</PrivateRoute>
 						}
 					/>
-					<Route
-						path='about'
-						element={
-							<PrivateRoute>
-								<About />
-							</PrivateRoute>
-						}
-					/>
+
 					<Route path='login' element={<LoginPage />} />
+					<Route path='registration' element={<RegistrationPage />} />
 					<Route path='about-us' element={<Navigate to='/about' />} />
 					<Route path='*' element={<NotFound />} />
 				</Route>

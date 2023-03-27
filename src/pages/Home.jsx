@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { Context } from '../hoc/AuthProvider'
 
 export const Home = () => {
-	const { user } = useContext(Context)
 	return (
 		<div className='flex flex-col gap-4 italic'>
 			<h1 className='font-bold'>Welcome to our homepage!</h1>
 
-			{user && <h1>Привіт, {user}!!</h1>}
 			<p>
 				We are excited to have you here and hope you enjoy exploring our
 				website. Our mission is to provide you with the best experience
