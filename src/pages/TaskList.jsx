@@ -6,12 +6,16 @@ export const TaskList = () => {
 	const tasks = useSelector(selectAllTasks)
 
 	return (
-		<ul>
-			{tasks.map(({ id, text }) => (
-				<li key={id}>
-					<Task id={id} text={text} />
-				</li>
-			))}
+		<ul className='py-4'>
+			{tasks.length ? (
+				tasks.map(({ id, text }) => (
+					<li key={id}>
+						<Task id={id} text={text} />
+					</li>
+				))
+			) : (
+				<h1>Empty</h1>
+			)}
 		</ul>
 	)
 }

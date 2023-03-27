@@ -17,9 +17,12 @@ export const TaskEditor = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input name='text' placeholder='enter your task here' />
-			<button className='border'>Add task</button>
+		<form
+			className='shadow-2xl mt-4 p-4 w-1/4 bg-indigo-300 flex justify-between'
+			onSubmit={handleSubmit}
+		>
+			<input className='px-4' name='text' placeholder='enter your task here' />
+			<button className='border rounded-md bg-white px-2'>Add task</button>
 		</form>
 	)
 }
