@@ -2,15 +2,21 @@ import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { logIn } from '../redux/auth/operations'
+import { toast } from 'react-toastify'
 export const LoginPage = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
 		const form = e.target
 		const email = form.email.value
 		const password = form.password.value
-		dispatch(logIn({ email, password })).unwrap().then(navigate('/'))
+		try {
+			await dispatch(logIn({ email, password })).unwrap()
+			navigate('/')
+		} catch {
+			toast.error('Error')
+		}
 		form.reset()
 	}
 	return (

@@ -16,7 +16,6 @@ export default function Tasks() {
 	return (
 		<>
 			<title>Your tasks</title>
-			<TaskEditor />
 			<div>{isLoading && 'Request in progress...'}</div>
 			<TaskList />
 		</>
