@@ -7,6 +7,7 @@ import { LoginPage } from './pages/LoginPage'
 import { RegistrationPage } from './pages/RegistrationPage'
 import { useDispatch } from 'react-redux'
 import { refreshUser } from './redux/auth/operations'
+import { PrivateRoute } from './hoc/PrivateRoute'
 
 const Posts = lazy(() => import('./pages/Posts'))
 
@@ -14,7 +15,7 @@ export const App = () => {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(refreshUser())
-	}, [])
+	}, [dispatch])
 	return (
 		<div className='text-3xl font-bold italic'>
 			<Routes>

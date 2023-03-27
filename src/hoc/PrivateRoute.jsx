@@ -1,16 +1,14 @@
 import React, { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import { Context } from './AuthProvider'
-
+import { selectIsLoggedIn } from '../redux/auth/selectors'
+import { useSelector } from 'react-redux'
 export const PrivateRoute = ({ children }) => {
 	const location = useLocation()
-
-	const { user } = useContext(Context)
-
-	if (!user) {
-		return <Navigate to='/login' state={{ from: location }} />
+	const isLoggedIn = useSelector(selectIsLoggedIn)
+	console.log(isLoggedIn)
+	if (isLoggedIn) {
+		return <Navigate to='/' state={{ from: location }} />
 	}
-
 	return children
-	// Компонент вищого порядка - hight order Component(HOC)
+	// Компонент вищого порядка - high order Component(HOC)
 }
