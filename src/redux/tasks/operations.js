@@ -14,6 +14,16 @@ export const fetchTasks = createAsyncThunk(
 	}
 )
 // POST @ /tasks
-export const addTask = createAsyncThunk()
+export const addTask = createAsyncThunk(
+	'tasks/addTask',
+	async (taskTitle, thunkAPI) => {
+		try {
+			const res = await axios.post('/tasks', { text: taskTitle })
+			return res.data
+		} catch (e) {
+			return thunkAPI.rejectWithValue(e.message)
+		}
+	}
+)
 // DELETE @ /tasks/:id
 export const deleteTask = createAsyncThunk()

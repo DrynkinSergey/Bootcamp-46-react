@@ -4,7 +4,6 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { logIn } from '../redux/auth/operations'
 export const LoginPage = () => {
 	const dispatch = useDispatch()
-	const navigate = useNavigate()
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
