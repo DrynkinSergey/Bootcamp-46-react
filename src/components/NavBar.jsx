@@ -4,10 +4,8 @@ import { NavLink } from 'react-router-dom'
 import { logOut } from '../redux/auth/operations'
 
 export const NavBar = () => {
-	const isLoggedIn = useSelector(state => state.isLoggedIn)
 	const dispatch = useDispatch()
 	const name = useSelector(state => state.auth.user.name)
-	console.log(name)
 	return (
 		<header className='text-2xl text-white font-bold py-6 px-4 bg-cyan-600 flex justify-between gap-6'>
 			<div className='flex gap-4'>
@@ -19,8 +17,13 @@ export const NavBar = () => {
 				<NavLink to='/registration'>signUp</NavLink>
 			</div>
 			<div className='flex gap-4'>
-				<h1>Welcome, {name}</h1>
-				<button className='border' onClick={() => dispatch(logOut())}>
+				<h1>
+					Welcome, <span className='text-black'>{name}</span>
+				</h1>
+				<button
+					className='border px-2 bg-red-500'
+					onClick={() => dispatch(logOut())}
+				>
 					LogOut
 				</button>
 			</div>
