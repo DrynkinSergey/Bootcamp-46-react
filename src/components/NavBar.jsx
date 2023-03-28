@@ -12,7 +12,8 @@ export const NavBar = () => {
 		<header className='text-2xl text-white font-bold py-6 px-4 bg-cyan-600 flex justify-between gap-6'>
 			<div className='flex gap-4'>
 				<NavLink to='/'>Home</NavLink>
-				<NavLink to='/posts'>Posts</NavLink>
+				{isLoggedin && <NavLink to='/posts'>Posts</NavLink>}
+				<NavLink to='/private'>Private</NavLink>
 			</div>
 			{!isLoggedin ? (
 				<div>

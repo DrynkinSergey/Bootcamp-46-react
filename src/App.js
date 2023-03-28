@@ -8,6 +8,8 @@ import { RegistrationPage } from './pages/RegistrationPage'
 import { useDispatch } from 'react-redux'
 import { refreshUser } from './redux/auth/operations'
 import { PrivateRoute } from './hoc/PrivateRoute'
+import { PublicRoute } from './hoc/PublicRoute'
+import { Private } from './pages/Private'
 
 const Posts = lazy(() => import('./pages/Posts'))
 
@@ -21,9 +23,38 @@ export const App = () => {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path='posts/' element={<Posts />} />
-					<Route path='login' element={<LoginPage />} />
-					<Route path='registration' element={<RegistrationPage />} />
+					<Route
+						path='posts/'
+						element={
+							<PrivateRoute>
+								<Posts />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='private'
+						element={
+							<PrivateRoute>
+								<Private />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='login'
+						element={
+							<PublicRoute>
+								<LoginPage />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path='registration'
+						element={
+							<PublicRoute>
+								<RegistrationPage />
+							</PublicRoute>
+						}
+					/>
 				</Route>
 			</Routes>
 		</div>
