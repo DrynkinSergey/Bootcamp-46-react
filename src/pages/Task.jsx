@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { deleteTask } from '../redux/tasks/operations'
+import { deleteTask, fetchTasks } from '../redux/tasks/operations'
 
 export const Task = ({ id, text }) => {
 	const dispatch = useDispatch()
