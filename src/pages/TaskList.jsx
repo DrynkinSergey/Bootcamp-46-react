@@ -7,11 +7,6 @@ export const TaskList = () => {
 
 	return (
 		<ul className='py-4'>
-			<div>
-				<NavLink to='/newTask' className='border bg-yellow-700 py-4 px-4 '>
-					Create new task
-				</NavLink>
-			</div>
 			{tasks.length ? (
 				tasks.map(({ id, text }) => (
 					<li key={id}>

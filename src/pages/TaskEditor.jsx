@@ -1,19 +1,26 @@
 import { useDispatch } from 'react-redux'
 import { addTask } from '../redux/tasks/operations'
-
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 export const TaskEditor = () => {
 	const dispatch = useDispatch()
-
-	const handleSubmit = e => {
+	const navigate = useNavigate()
+	const handleSubmit = async e => {
 		e.preventDefault()
 		const form = e.currentTarget
 		const text = form.elements.text.value
-		if (text !== '') {
-			dispatch(addTask(text))
-			form.reset()
+		if (text === '') {
+			toast.error('Empty field!')
 			return
 		}
-		alert('Task cannot be empty. Enter some text!')
+		try {
+			await dispatch(addTask(text)).unwrap()
+			navigate('/posts')
+			toast.success('Task created!')
+		} catch {
+			toast.error('Error')
+		}
+		form.reset()
 	}
 
 	return (
