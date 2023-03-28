@@ -10,6 +10,7 @@ export const PublicRoute = ({ children }) => {
 	if (isLoggedIn) {
 		return <Navigate to={fromPage} />
 		// return <Navigate to='/' /> для домашки
+		// це буде в мене після мержу
 	}
 	return children
 }
