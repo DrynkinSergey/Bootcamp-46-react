@@ -1,74 +1,50 @@
-import 'react-toastify/dist/ReactToastify.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Counter } from './pages/Counter'
-import { LoginForm } from './pages/LoginForm'
-import { TodoList } from './pages/TodoList'
-import { ImageFounder } from './pages/ImageFounder'
-import { ColorPicker } from './pages/ColorPicker'
-import { NavBar } from './components/NavBar/NavBar'
-import { Vote } from './pages/Vote'
-import { createContext, useContext, useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import MediaCard from './components/MediaCard'
+import { experimentalStyled as styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
 
-const context = {
-	btnsVote: [
-		{ title: 'LINUX', name: 'linux' },
-		{ title: 'WINDOWS', name: 'windows' },
-		{ title: 'MAC OS', name: 'macOS' },
-	],
-	btnsCounter: [
-		{ title: 'dsaf', name: 'asdf' },
-		{ title: 'WINDOWS', name: 'windows' },
-		{ title: 'MAC OS', name: 'macOS' },
-	],
-	colorsData: [
-		{
-			id: 1,
-			color: 'white',
-		},
-		{
-			id: 2,
-			color: 'lightblue',
-		},
-		{
-			id: 3,
-			color: 'orange',
-		},
-		{
-			id: 4,
-			color: 'tomato',
-		},
-		{
-			id: 5,
-			color: 'teal',
-		},
-		{
-			id: 6,
-			color: 'yellow',
-		},
-	],
-	colorsTheme: {
-		mainColor: 'blue',
-		secondColor: 'red',
-	},
-}
-
-export const MyContext = createContext(context)
 export const App = () => {
+	const [data, setData] = useState([])
+
+	// useEffect(() => {
+	// 	if (likes === 100) {
+	//
+	// 	}
+	// }, [likes])
+
+	useEffect(() => {
+		axios
+			.get(
+				`https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=$animals&image_type=photo&per_page=12&page=${1}`
+			)
+			.then(res => setData(res.data.hits))
+	}, [])
+	const Item = styled(Paper)(({ theme }) => ({
+		backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+		...theme.typography.body2,
+		padding: theme.spacing(2),
+		textAlign: 'center',
+		color: theme.palette.text.secondary,
+	}))
 	return (
-		<BrowserRouter>
-			<NavBar />
-			<hr />
-			<MyContext.Provider value={context}>
-				<Routes>
-					<Route index element={<ColorPicker />} />
-					<Route path='counter' element={<Counter />} />
-					<Route path='imageFounder' element={<ImageFounder />} />
-					<Route path='colorPicker' element={<ColorPicker />} />
-					<Route path='login' element={<LoginForm />} />
-					<Route path='todoList' element={<TodoList />} />
-					<Route path='vote' element={<Vote />} />
-				</Routes>
-			</MyContext.Provider>
-		</BrowserRouter>
+		<div>
+			<header>Images</header>
+			<Button variant='contained'>Contained</Button>
+			<Grid
+				container
+				spacing={{ xs: 2, md: 3 }}
+				columns={{ xs: 4, sm: 8, md: 12 }}
+			>
+				{Array.from(Array(6)).map((_, index) => (
+					<Grid item xs={2} sm={4} md={4} key={index}>
+						<MediaCard src={data[0].largeImageURL} />
+					</Grid>
+				))}
+			</Grid>
+		</div>
 	)
 }
