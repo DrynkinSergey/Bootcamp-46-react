@@ -9,6 +9,7 @@ const pages = [
 	{ title: 'Login', url: '/login' },
 	{ title: 'ImageFounder', url: '/imageFounder' },
 	{ title: 'Vote', url: '/vote' },
+	{ title: 'Wallet', url: 'wallet' },
 ]
 
 export const NavBar = () => {

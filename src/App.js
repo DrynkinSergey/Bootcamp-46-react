@@ -8,7 +8,8 @@ import { ColorPicker } from './pages/ColorPicker'
 import { NavBar } from './components/NavBar/NavBar'
 import { Vote } from './pages/Vote'
 import { createContext, useContext, useState } from 'react'
-
+import { Wallet } from './pages/Wallet/Wallet'
+import './main.scss'
 const context = {
 	btnsVote: [
 		{ title: 'LINUX', name: 'linux' },
@@ -67,6 +68,7 @@ export const App = () => {
 					<Route path='login' element={<LoginForm />} />
 					<Route path='todoList' element={<TodoList />} />
 					<Route path='vote' element={<Vote />} />
+					<Route path='wallet' element={<Wallet />} />
 				</Routes>
 			</MyContext.Provider>
 		</BrowserRouter>
